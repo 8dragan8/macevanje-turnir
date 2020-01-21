@@ -1,11 +1,13 @@
 import React from "react"
 
-const Timer = ({ t }) => {
+import * as Styled from "./TimerStyle"
+
+const Timer = ({t}) => {
 	const secToString = t => `${Math.floor(t / 60)}:${(`0` + String(t % 60)).slice(-2)}`
 	return (
-		<div>
+		<Styled.Container>
 			<h1>{secToString(t)}</h1>
-		</div>
+		</Styled.Container>
 	)
 }
 

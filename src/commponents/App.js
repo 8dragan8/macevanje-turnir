@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { createGlobalStyle } from "styled-components"
-import UbodBtn from "./UbodBtn"
 import Timer from "./Timer"
+import Match from "./Match"
 
 const dummyData = {
-	p1:{
-		ime:`Prvan`,
-		prezime: `Prvoprezimenović`,
+	p1: {
+		ime: `Prvan`,
+		prezime: `Prvoprezimenović`
 	},
-	p2:{
-		ime:`Drugak`,
-		prezime: `Drugoprezimenović`,
+	p2: {
+		ime: `Drugak`,
+		prezime: `Drugoprezimenović`
 	}
 }
 
@@ -82,7 +82,7 @@ const Naslov = styled(FlexRow)`
 `
 
 const App = () => {
-	const int = 3 *60
+	const int = 3 * 60
 
 	const [isRunning, setIsRunning] = useState(false)
 	const [timer, setTimer] = useState(0)
@@ -118,11 +118,11 @@ const App = () => {
 			{/* <Naslov>
 				<h1>Meč</h1>
 			</Naslov> */}
+			<Match />
 			<Container>
 				<Red>
 					<Igrac>1</Igrac>
 					<Split>
-						<UbodBtn></UbodBtn>
 					</Split>
 					<Igrac>3</Igrac>
 				</Red>
@@ -142,4 +142,3 @@ const App = () => {
 	)
 }
 export default App
-
