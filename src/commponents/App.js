@@ -11,7 +11,8 @@ const dummyData = {
 	p2: {
 		ime: `Drugak`,
 		prezime: `Drugoprezimenović`
-	}
+	},
+	time: 3 * 60
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -33,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
 // `
 
 const App = () => {
-	const int = 3 * 60
 
 	return (
 		<>
@@ -41,7 +41,7 @@ const App = () => {
 			{/* <Naslov>
 				<h1>Meč</h1>
 			</Naslov> */}
-			<Match int={int} />
+			<Match data={dummyData} />
 
 		</>
 	)
