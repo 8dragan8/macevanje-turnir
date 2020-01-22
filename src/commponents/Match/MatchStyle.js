@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const FlexRow = styled.div`
 	display: flex;
@@ -46,4 +46,14 @@ export const Vreme = styled(FlexCol)`
 	display: flex;
 	flex: 0 0 40%;
 	background-color: #001100;
+`
+export const CommandBar = styled(FlexRow)`
+	width: 95%;
+	align-self: flex-end;
+	flex-wrap: wrap;
+
+`
+export const Command = styled.button`
+	flex: 1 0 auto;
+	padding: 0.5em 0.2em;
 `

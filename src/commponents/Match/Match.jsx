@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react"
 
-import {Container, Red, Igrac, Split, Skor, Vreme } from "./MatchStyle"
+import { Container, Red, Igrac, Split, Skor, Vreme, CommandBar, Command } from "./MatchStyle"
 
 import Timer from "./Timer"
+import Popup from "./Popup"
 
+const Match = ({ data }) => {
+	const { time, p1, p2 } = data
 
-const Match = ({int}) => {
-
-	const [isRunning, setIsRunning] = useState(false)
+	const [isRunning, setIsRunning] = useState(true)
 	const [timer, setTimer] = useState(0)
+	const [skorP1, setSkorP1] = useState(0)
+	const [skorP2, setSkorP2] = useState(0)
 
 	useEffect(() => {
 		let interval = null
-		if (isRunning && int - timer !== 0) {
+		if (isRunning && time - timer !== 0) {
 			interval = setInterval(() => {
 				setTimer(prevTtimer => prevTtimer + 1)
 			}, 1000)
@@ -25,9 +28,14 @@ const Match = ({int}) => {
 	}, [isRunning, timer])
 
 	const playpause = e => {
+		if (e.target.value === `1`) {
+			setSkorP1(old => old + 1)
+		} else if (e.target.value === `2`) {
+			setSkorP2(old => old + 1)
+		}
 		if (timer === 0) {
 			setIsRunning(true)
-		} else if (int - timer !== 0) {
+		} else if (time - timer !== 0) {
 			setIsRunning(!isRunning)
 		}
 	}
@@ -38,21 +46,36 @@ const Match = ({int}) => {
 	return (
 		<Container>
 			<Red>
-				<Igrac>1</Igrac>
-				<Split></Split>
-				<Igrac>3</Igrac>
+				<Igrac>
+					<p>{p1.ime}</p>
+					<p>{p1.prezime}</p>
+				</Igrac>
+				<Split>
+					{/* <CommandBar> */}
+						<Command onClick={playpause}>Play/Pause</Command>
+					{/* </CommandBar> */}
+				</Split>
+				<Igrac>
+					<p>{p2.ime}</p>
+					<p>{p2.prezime}</p>
+				</Igrac>
 			</Red>
 			<Red>
-				<Skor>4</Skor>
+				<Skor>{skorP1}</Skor>
 				<Vreme>
-					<Timer t={int - timer} />
-					<div>
-						<button onClick={playpause}>Play/Pause</button>
-						<button onClick={reset}>Reset</button>
-					</div>
+					<Timer t={time - timer} />
 				</Vreme>
-				<Skor>6</Skor>
+				<Skor>{skorP2}</Skor>
 			</Red>
+			<Popup show={!isRunning}>
+				<Command onClick={playpause} value="1">
+					Ubod P1
+				</Command>
+				<Command onClick={reset}>Reset</Command>
+				<Command onClick={playpause} value="2">
+					Ubod P2
+				</Command>
+			</Popup>
 		</Container>
 	)
 }
